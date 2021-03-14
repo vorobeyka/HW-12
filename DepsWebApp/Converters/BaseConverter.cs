@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace DepsWebApp.Converters
 {
@@ -15,7 +12,7 @@ namespace DepsWebApp.Converters
         /// <returns>Encoded string</returns>
         public static string ToBase64String(string str)
         {
-            return Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(str));
+            return "Basic " + Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(str));
         }
 
         /// <summary>

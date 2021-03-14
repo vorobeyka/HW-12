@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using DepsWebApp.Models;
 using DepsWebApp.Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DepsWebApp.Controllers
@@ -16,9 +11,16 @@ namespace DepsWebApp.Controllers
     /// </summary>
     [Route("[controller]")]
     [ApiController]
+    [ProducesResponseType(typeof(string), 200)]
+    [ProducesResponseType(400)]
     public class AuthController : ControllerBase
     {
         private readonly IAccountService _accountService;
+
+        /// <summary>
+        /// AuthController constructor
+        /// </summary>
+        /// <param name="accountService">Set <see cref="_accountService"/></param>
         public AuthController(IAccountService accountService)
         {
             _accountService = accountService;
@@ -27,7 +29,7 @@ namespace DepsWebApp.Controllers
         /// <summary>
         /// Register account in memory.
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="request">Account</param>
         /// <returns>Base64 string.</returns>
         [HttpPost]
         [AllowAnonymous]

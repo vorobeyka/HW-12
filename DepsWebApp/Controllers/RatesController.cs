@@ -17,6 +17,11 @@ namespace DepsWebApp.Controllers
         private readonly ILogger<RatesController> _logger;
         private readonly IRatesService _rates;
 
+        /// <summary>
+        /// RatesController constructor.
+        /// </summary>
+        /// <param name="rates">Set <see cref="_logger"/></param>
+        /// <param name="logger">Set <see cref="_rates"/></param>
         public RatesController(
             IRatesService rates,
             ILogger<RatesController> logger)
@@ -28,11 +33,14 @@ namespace DepsWebApp.Controllers
         /// <summary>
         /// Get amount in exchanged currency.
         /// </summary>
-        /// <param name="srcCurrency"></param>
-        /// <param name="dstCurrency"></param>
-        /// <param name="amount"></param>
+        /// <param name="srcCurrency">Source currency.</param>
+        /// <param name="dstCurrency">Destination currency.</param>
+        /// <param name="amount">Currency amount.</param>
         /// <returns>Decimal amount of currency.</returns>
         [HttpGet("{srcCurrency}/{dstCurrency}")]
+        [ProducesResponseType(typeof(decimal), 200)]
+        [ProducesResponseType(typeof(string), 400)]
+        [ProducesResponseType(401)]
         public async Task<ActionResult<decimal>> Get(string srcCurrency, string dstCurrency, decimal? amount)
         {
             var exchange =  await _rates.ExchangeAsync(srcCurrency, dstCurrency, amount ?? decimal.One);

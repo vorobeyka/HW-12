@@ -1,5 +1,4 @@
 ﻿using DepsWebApp.Converters;
-using DepsWebApp.Models;
 using DepsWebApp.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
