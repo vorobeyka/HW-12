@@ -5,6 +5,8 @@ namespace DepsWebApp.Converters
 {
     public class BaseConverter
     {
+        private static readonly string _encodingName = "ISO-8859-1";
+
         /// <summary>
         /// Encode string to base64 string
         /// </summary>
@@ -12,7 +14,7 @@ namespace DepsWebApp.Converters
         /// <returns>Encoded string</returns>
         public static string ToBase64String(string str)
         {
-            return "Basic " + Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(str));
+            return "Basic " + Convert.ToBase64String(Encoding.GetEncoding(_encodingName).GetBytes(str));
         }
 
         /// <summary>
@@ -22,7 +24,7 @@ namespace DepsWebApp.Converters
         /// <returns>Decoded string.</returns>
         public static string FromBase64String(string str)
         {
-            return Encoding.GetEncoding("ISO-8859-1").GetString(
+            return Encoding.GetEncoding(_encodingName).GetString(
                     Convert.FromBase64String(
                         str.ToString().Split("Basic ")[1]));
         }

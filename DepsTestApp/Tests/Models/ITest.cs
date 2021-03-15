@@ -1,11 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using DepsTestApp.Models;
+using System.Net.Http;
 
 namespace DepsTestApp.Tests.Models
 {
-    public interface ITest
+    internal interface ITest
     {
-
+        int ExpectedStatusCode { get; set; }
+        string RequestString { get; set; }
+        string HeaderName { get; set; }
+        Account Account { get; set; }
+        RequestMethod Method { get; set; }
     }
 }

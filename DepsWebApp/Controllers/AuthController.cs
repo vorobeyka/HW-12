@@ -33,13 +33,13 @@ namespace DepsWebApp.Controllers
         /// <returns>Base64 string.</returns>
         [HttpPost]
         [AllowAnonymous]
-        [Route("reguster")]
+        [Route("register")]
         public async Task<ActionResult<string>> Register([FromBody]AuthRequest request)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
             
             var baseKey = await _accountService.RegisterAsync(request.Login, request.Password);
-            if (string.IsNullOrEmpty(baseKey)) return BadRequest();
+            if (string.IsNullOrEmpty(baseKey)) return BadRequest("User alredy exists");
             return baseKey;
         }
     }
